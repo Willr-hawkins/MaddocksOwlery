@@ -1,3 +1,4 @@
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +14,10 @@
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!-- Bootstrap icons CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <!-- Google Fonts links -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
@@ -30,6 +35,43 @@
     <title>MaddocksOwlery</title>
 </head>
 <body>
-    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md">
+        <div class="container-lg container-fluid">
+            <h1><a class="navbar-brand playpen-sans" href="#">MaddocksOwlery</a></h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span><i class="bi bi-list navbar-btn"></i></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title me-auto" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn p-0 border-0 bg-transparent" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <i class="bi bi-x-circle" style="color: #EBEBEB;"></i>
+                    </button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link playpen-sans" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link playpen-sans" href="#">Live Feed</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link playpen-sans" href="#">The Platform</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link playpen-sans" href="#">News</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

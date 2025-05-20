@@ -1,0 +1,92 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #EBEBEB;
+    color: #474747;
+    font-family: "concert One", sans-serif;
+}
+
+/* Fonts (Google Fonts) */
+.concert-one {
+    font-family: "Concert One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.playpen-sans {
+    font-family: "Playpen Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+/* Navbar styles */
+.navbar {
+    background-color: #6B705C;
+    position: relative;
+    height: 95px;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    color: #EBEBEB;
+    font-weight: 900;
+    transition: 0.3s;
+}
+
+.navbar-brand:hover {
+    color: #474747;
+}
+
+.navbar-nav {
+    gap: 10px;
+}
+
+.nav-link {
+    color: #EBEBEB;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.nav-link:hover {
+    color: #474747;
+    text-decoration: underline 2.5px #F1E9D0;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler:focus-visible {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.navbar-btn {
+    font-size: 2rem;
+    color: #EBEBEB;
+    transition: 0.3s;
+}
+
+/* Offcanvas Navbar */
+.offcanvas {
+    background-color: #6B705C;
+    color: #EBEBEB;
+}
+
+.offcanvas-header {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+}
+
+.offcanvas-title,
+.offcanvas button i {
+    font-size: 2rem;
+}
