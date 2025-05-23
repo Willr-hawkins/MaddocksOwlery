@@ -62,14 +62,13 @@
                             <a class="nav-link playpen-sans" href="#">The Platform</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link playpen-sans" href="#">News</a>
+                            <a class="nav-link playpen-sans" href="{% url 'news_updates_list' %}">News</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-
 
     {% block content %}
     {% endblock %}

@@ -25,7 +25,7 @@ html, body {
     background-color: #6B705C;
     position: relative;
     height: 95px;
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
 }
 
 .navbar-brand {
@@ -89,4 +89,9 @@ html, body {
 .offcanvas-title,
 .offcanvas button i {
     font-size: 2rem;
+}
+
+/* Home Page */
+.carousel {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
 }
