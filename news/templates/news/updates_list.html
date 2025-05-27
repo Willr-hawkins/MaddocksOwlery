@@ -2,6 +2,20 @@
 
 {% block content %}
     <div class="container">
-        
+        <h1 class="text-center news-header">News Updates</h1>
+        <hr>
+        <div class="row gx-3 gy-4">
+            <!-- Create a card for each news update in the database. -->
+            {% for update in news_updates %}
+                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ update.image.url }}" class="card-img-top" alt="News update image for {{ update.date_created }}">
+                        <div class="card-body">
+                            <p class="card-text text-center">{{ update.date_created }} Project Update.</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

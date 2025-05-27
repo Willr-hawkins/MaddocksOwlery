@@ -92,6 +92,60 @@ html, body {
 }
 
 /* Home Page */
-.carousel {
+.landing-image {
+    max-height: 900px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
+}
+
+.main-content p {
+    font-size: 1.3rem;
+}
+
+.carousel {
+    border: #6B705C 8px solid;
+    border-radius: 25px;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
+    max-height: 600px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.carousel-item {
+    max-height: 600px;
+    max-width: 600px;
+    z-index: -1;
+}
+
+.carousel-item img {
+    object-fit: contain;
+    object-position: center;
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border: #6B705C 5px solid;
+    border-radius: 25px;
+}
+
+/* News Page */
+.news-header {
+    margin-top: 50px;
+    font-size: 3rem;
+}
+
+.card {
+    background-color: #EBEBEB;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
+    border-radius: 20px;
+}
+
+.card-img-top {
+    padding: 15px;
+    border-radius: 25px;
+    border: #6B705C 2px soild;
 }

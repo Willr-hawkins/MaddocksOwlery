@@ -1,32 +1,106 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div id="carouselExampleIndicators" class="carousel slide">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="..." class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
+<div class="landing">
+  <img class="landing-image" src="{% static 'images/maddocks-owlery.jpg' %}"
+    alt="Maddocks Owlery with Simon Maddocks stood infront.">
+</div>
+<div class="container mt-4">
+  <div class="main-content">
+    <h2 class="text-center">Welcome to MaddocksOwlery.</h2>
+    <h5 class="mt-2 text-center">| A sanctuary for wildlife, a legacy for future generations. |</h5>
+    <hr>
+    <p>
+      In the heart of North Devon, nestled among 35 acres of rich, diverse land, a quiet transformation is taking place.
+      After more than three decades running local riding stables, Simon Maddocks turned a lifelong connection to the
+      land into a powerful mission of nature recovery.
+    </p>
+    <br>
+    <p>
+      With the support of the North Devon National Landscape (formerly AONB), local stonemasons, conservation groups,
+      and generous crowdfunding, a dream has come to life:
+      a purpose-built wildlife tower, created to offer shelter to the creatures losing their habitats to development and
+      disrepair.
+    </p>
+
+    <!-- Carousel for build process -->
+    <div class="container mb-3">
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
         </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'images/owlery-build-1.jpg' %}" class="d-block w-100" alt="Build process of the owlery.">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/owlery-build-2.jpg' %}" class="d-block w-100" alt="Build process of the owlery.">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/owlery-build-3.jpg' %}" class="d-block w-100" alt="Build process of the owlery.">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/owlery-build-4.jpg' %}" class="d-block w-100" alt="Build process of the owlery.">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/owlery-build-5.jpg' %}" class="d-block w-100" alt="Build process of the owlery.">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/owlery-build-6.jpg' %}" class="d-block w-100" alt="Build process of the owlery.">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/owlery-build-7.jpg' %}" class="d-block w-100" alt="Build process of the owlery.">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
+    <!-- End of carousel -->
+    <br>
+    <p>
+      This is more than just an owlery. It’s a long-term commitment to biodiversity. Carefully constructed with locally sourced materials and guided by a passion for the natural world,
+      the tower stands as a symbol of what’s possible when community and conservation work hand-in-hand.
+    </p>
+    <br>
+    <p>
+      <a href="">Cameras</a> installed inside the tower allow us to observe barn owls and bats without disturbance. The upcoming viewing <a href="">platform</a> will offer safe and respectful access for
+      anyone curious to witness nature in action—without harming the delicate balance of wildlife.
+    </p>
+    <br>
+    <p class="fw-bold">
+      Please join us in celebrating and protecting the wildlife of North Devon—because every nest, every wingbeat, every wild corner matters.
+    </p>
+    <hr>
+    <!-- Short video by the team that helped create the owlery. -->
+    <div class="container">
+      <h3 class="text-center">Want to see more?</h3>
+      <p class="text-center">Watch our short video below to find out more about the owlery, and get a better understand of how amazing it reall is!</p>
+      <br>
+      <div class="video-container">
+        <video controls width="900" height="600" preload="metadata">
+          <source src="{% static 'videos/owlery-video.mp4' %}" type="video/mp4">
+          <p>We're sorry but your browser doesn't support this video.</p>
+          <a href="{% static 'videos/owlery-video.mp4' %}">Download the video</a> instead.</p>
+        </video>
+      </div>
+    </div>
+    <!-- End of short video -->
+  </div>
+</div>
 {% endblock %}
