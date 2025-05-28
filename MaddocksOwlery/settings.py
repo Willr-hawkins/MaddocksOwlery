@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '') 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['maddocksowlery.onrender.com', '8000-willrhawkin-maddocksowl-j3tnzmy693f.ws-eu120.gitpod.io']
 
