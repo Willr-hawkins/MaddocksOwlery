@@ -100,6 +100,10 @@ html, body {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
 }
 
+.subheading {
+    color: #6B7054;
+}
+
 .main-content p {
     font-size: 1.3rem;
 }

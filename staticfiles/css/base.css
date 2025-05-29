@@ -100,6 +100,10 @@ html, body {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
 }
 
+.subheading {
+    color: #6B7054;
+}
+
 .main-content p {
     font-size: 1.3rem;
 }
@@ -124,10 +128,12 @@ html, body {
     object-position: center;
 }
 
-.owlery-video {
-    border: #6B705C 6px solid;
+.video-container video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border: #6B705C 5px solid;
     border-radius: 25px;
-    margin: 0 auto;
 }
 
 /* News Page */
