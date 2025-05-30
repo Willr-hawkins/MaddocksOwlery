@@ -91,6 +91,13 @@ html, body {
     font-size: 2rem;
 }
 
+/* Footer styles */
+footer {
+    background-color: #6B7054;
+    color: #6B705C;
+    height: 150px;
+}
+
 /* Home Page */
 .landing-image {
     max-height: 900px;
@@ -100,12 +107,24 @@ html, body {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
 }
 
-.subheading {
+.main-content i {
     color: #6B7054;
+    font-size: 1.2rem;
 }
 
-.main-content p {
-    font-size: 1.3rem;
+.our-story,
+.wildlife-tower,
+.conversation,
+.wildlife,
+.community-vision,
+.journey {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.subheading {
+    color: #6B7054;
 }
 
 .carousel {
