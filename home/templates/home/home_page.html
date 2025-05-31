@@ -160,7 +160,51 @@
   </div>
 </div>
 
-<!-- JavaScript for auto-sliding adn auto-pausing when user hovers mouse over the top of the carousel. -->
+<!-- JavaScript for auto-sliding and auto-pausing when user hovers mouse over the top of the carousel. -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const carouselElement = document.querySelector('#carouselExampleIndicators');
+
+    const bsCarousel = new bootstrap.Carousel(carouselElement, {
+      interval: 2000,
+      ride: false,
+      pause: false // We'll handle pause on hover ourselves
+    });
+
+    let isVisible = false;
+
+    // Handle visibility with IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isVisible = entry.isIntersecting;
+
+        if (isVisible) {
+          bsCarousel.cycle();
+        } else {
+          bsCarousel.pause();
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    observer.observe(carouselElement);
+
+    // Pause on mouse hover
+    carouselElement.addEventListener('mouseenter', () => {
+      bsCarousel.pause();
+    });
+
+    // Resume when mouse leaves, but only if it's visible
+    carouselElement.addEventListener('mouseleave', () => {
+      if (isVisible) {
+        bsCarousel.cycle();
+      }
+    });
+  });
+</script>
+
+<!-- JavaScript for autoplay video when it comes into view along with unmute btn and play/pause btn. -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const video = document.getElementById("owleryVideo");
