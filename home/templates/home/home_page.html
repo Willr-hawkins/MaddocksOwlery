@@ -42,16 +42,11 @@
     <hr style="margin: 50px 0;">
     <!-- Carousel for build process -->
     <div class="container mb-3">
-      <div id="carouselExampleIndicators" class="carousel slide">
-        <div class="carousel-indicators">
-         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
-        </div>
+      <h4 class="text-center fw-bold subheading mb-3">| Watch the Owlery take it's place. |</h4>
+      <p class="text-center">
+        <small>Hover over the images to pause the slideshow, or use the arrows to go back and forth.</small>
+      </p>
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="{% static 'images/owlery-build-1.jpg' %}" class="d-block w-100" alt="Build process of the owlery.">
@@ -121,12 +116,15 @@
       <p class="text-center">Watch our short video below to explore the story behind Maddocks Owlery and the remarkable journey of its creation.</p>
       <br>
       <div class="video-container">
-        <video controls width="900" height="600" preload="metadata">
+        <video id="owleryVideo" muted playsinline preload="metadata" width="900" height="600" controls>
           <source src="{% static 'videos/owlery-video.mp4' %}" type="video/mp4">
-          <p>We're sorry but your browser doesn't support this video.</p>
-          <a href="{% static 'videos/owlery-video.mp4' %}">Download the video</a> instead.</p>
+          Your browser does not support the video tag.
         </video>
       </div>
+      <div class="button-wrapper" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px;">
+        <button id="unmuteButton" class="btn btn-outline-light">🔊 Unmute</button>
+        <button id="playPauseBtn" class="btn btn-outline-light">Pause</button>
+    </div>
     </div>
     <!-- End of short video -->
     <hr style="margin: 50px 0;">
@@ -161,4 +159,76 @@
     </h4>
   </div>
 </div>
+
+<!-- JavaScript for auto-sliding adn auto-pausing when user hovers mouse over the top of the carousel. -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const video = document.getElementById("owleryVideo");
+  const unmuteButton = document.getElementById("unmuteButton");
+  const playPauseBtn = document.getElementById("playPauseBtn");
+
+  let userPaused = false;
+  let scrollPaused = false;
+
+  // IntersectionObserver to handle autoplay on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (!userPaused) {
+          video.play().catch(e => console.log("Autoplay blocked:", e));
+          scrollPaused = false;
+          playPauseBtn.textContent = "Pause";
+        }
+      } else {
+        if (!video.paused) {
+          video.pause();
+          scrollPaused = true;
+        }
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  observer.observe(video);
+
+  // Unmute/mute toggle
+  unmuteButton.addEventListener("click", () => {
+    video.muted = !video.muted;
+    unmuteButton.textContent = video.muted ? "🔊 Unmute" : "🔇 Mute";
+  });
+
+  // Play/pause button
+  playPauseBtn.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
+      playPauseBtn.textContent = "Pause";
+      userPaused = false;
+    } else {
+      video.pause();
+      playPauseBtn.textContent = "Play";
+      userPaused = true;
+    }
+  });
+
+  // Keep button in sync only if it's user-driven (not scroll)
+  video.addEventListener("pause", () => {
+    if (!scrollPaused && !video.ended && !video.seeking) {
+      playPauseBtn.textContent = "Play";
+      userPaused = true;
+    }
+  });
+
+  video.addEventListener("play", () => {
+    userPaused = false;
+    scrollPaused = false;
+    playPauseBtn.textContent = "Pause";
+  });
+
+  // Disable click-to-pause to prevent frustrating autoplay overrides
+  video.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
+});
+</script>
 {% endblock %}

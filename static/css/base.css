@@ -7,6 +7,16 @@ html, body {
     font-family: "concert One", sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wrapper {
+    flex: 1;
+}
+
 /* Fonts (Google Fonts) */
 .concert-one {
     font-family: "Concert One", sans-serif;
@@ -95,7 +105,7 @@ html, body {
 footer {
     background-color: #6B7054;
     color: #6B705C;
-    height: 150px;
+    height: 95px;
 }
 
 /* Home Page */
@@ -153,6 +163,12 @@ footer {
     max-width: 100%;
     border: #6B705C 5px solid;
     border-radius: 25px;
+}
+
+#unmuteButton,
+#playPauseBtn {
+    color: #474747;
+    margin-top: 10px;
 }
 
 /* News Page */

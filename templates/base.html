@@ -59,7 +59,7 @@
                             <a class="nav-link playpen-sans" href="#">Live Feed</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link playpen-sans" href="#">The Platform</a>
+                            <a class="nav-link playpen-sans" href="#">Gallery</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link playpen-sans" href="{% url 'news_updates_list' %}">News</a>
@@ -70,10 +70,12 @@
         </div>
     </nav>
 
-    {% block content %}
-    {% endblock %}
+    <div class="wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
 
-    <div class="container-fluid">
+    <div>
         <footer class="text-center">
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="#">Home</a></li>

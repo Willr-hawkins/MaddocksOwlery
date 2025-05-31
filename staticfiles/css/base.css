@@ -7,6 +7,16 @@ html, body {
     font-family: "concert One", sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wrapper {
+    flex: 1;
+}
+
 /* Fonts (Google Fonts) */
 .concert-one {
     font-family: "Concert One", sans-serif;
@@ -91,6 +101,13 @@ html, body {
     font-size: 2rem;
 }
 
+/* Footer styles */
+footer {
+    background-color: #6B7054;
+    color: #6B705C;
+    height: 95px;
+}
+
 /* Home Page */
 .landing-image {
     max-height: 900px;
@@ -100,12 +117,24 @@ html, body {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
 }
 
-.subheading {
+.main-content i {
     color: #6B7054;
+    font-size: 1.2rem;
 }
 
-.main-content p {
-    font-size: 1.3rem;
+.our-story,
+.wildlife-tower,
+.conversation,
+.wildlife,
+.community-vision,
+.journey {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.20);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.subheading {
+    color: #6B7054;
 }
 
 .carousel {
@@ -134,6 +163,12 @@ html, body {
     max-width: 100%;
     border: #6B705C 5px solid;
     border-radius: 25px;
+}
+
+#unmuteButton,
+#playPauseBtn {
+    color: #474747;
+    margin-top: 10px;
 }
 
 /* News Page */
