@@ -15,6 +15,11 @@
                         </div>
                     </div>
                 </div>
+            {% empty %}
+                <div class="container">
+                    <h3 class="text-center mt-4">Nothing Found!</h3>
+                    <p class="text-center mt-4">We're sorry but there doesn't seem to be any news updates at the moment. Sign up to our newsletter to be the first to find out when news updates come out.</p>
+                </div>
             {% endfor %}
         </div>
     </div>

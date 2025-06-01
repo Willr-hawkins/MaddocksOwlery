@@ -89,7 +89,7 @@ DATABASES = {
 
 # Trusted origins
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-willrhawkin-maddocksowl-j3tnzmy693f.ws-eu119.gitpod.io"
+    "https://8000-willrhawkin-maddocksowl-j3tnzmy693f.ws-eu120.gitpod.io"
 ]
 
 # Password validation

@@ -104,8 +104,13 @@ body {
 /* Footer styles */
 footer {
     background-color: #6B7054;
-    color: #6B705C;
     height: 95px;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: #EBEBEB;
+    font-size: 1.3rem;
 }
 
 /* Home Page */
