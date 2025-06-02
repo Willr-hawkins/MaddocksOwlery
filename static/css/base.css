@@ -188,3 +188,12 @@ footer {
     border-radius: 25px;
     border: #6B705C 2px soild;
 }
+
+/*-------------------*/
+/* Media queries */
+/*-------------------*/
+@media (max-width: 768px) {
+    .info-block {
+        margin: 20px 0;
+    }
+}

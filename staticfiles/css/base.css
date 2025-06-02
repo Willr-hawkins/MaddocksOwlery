@@ -104,13 +104,8 @@ body {
 /* Footer styles */
 footer {
     background-color: #6B7054;
+    color: #6B705C;
     height: 95px;
-}
-
-.footer-link {
-    text-decoration: none;
-    color: #EBEBEB;
-    font-size: 1.3rem;
 }
 
 /* Home Page */
@@ -192,4 +187,13 @@ footer {
     padding: 15px;
     border-radius: 25px;
     border: #6B705C 2px soild;
+}
+
+/*-------------------*/
+/* Media queries */
+/*-------------------*/
+@media (max-width: 768px) {
+    .info-block {
+        margin: 20px 0;
+    }
 }
