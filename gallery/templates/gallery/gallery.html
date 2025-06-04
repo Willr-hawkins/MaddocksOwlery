@@ -2,6 +2,13 @@
 {% load static %}
 
 {% block content %}
+
+{% if user.is_authenticated and user.is_superuser %}
+    <div class=" container">
+        <a class="upload-link float-end mt-5" href="{% url 'upload_gallery' %}">+ Upload</a>
+    </div>
+{% endif %}
+
 <div class="container">
     <div class="heading pt-4">
         <h1 class="text-center pt-4">The Gallery</h1>
@@ -10,16 +17,12 @@
     </div>
 
     <div class="row gallery-row py-5 px-lg-5 px-sm-0">
-        {% for column in columns %}
-            <div class="column gallery-column">
-                {% for image in column %}
-                    <div class="position-relative gallery-image-wrapper mb-3">
-                        <img src="{{ image.image.url }}" alt="Gallery image" class="gallery-img">
-                        <div class="gallery-caption">
-                            {{ image.description }}
-                        </div>
-                    </div>
-                {% endfor %}
+        {% for image in images %}
+            <div class="gallery-image-wrapper mb-3">
+                <img src="{{ image.image.url }}" alt="Gallery image" class="gallery-img">
+                <div class="gallery-caption">
+                    {{ image.description }}
+                </div>
             </div>
         {% endfor %}
     </div>

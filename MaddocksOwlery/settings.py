@@ -39,8 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # For the use of AWS s3
     'storages',
 
+    # Crispy Forms
+    'crispy_forms',
+    'crispy_bootstrap5',
+
+    # My apps
     'home',
     'news',
     'gallery',
@@ -73,6 +80,9 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = ["bootstrap5"]
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 WSGI_APPLICATION = 'MaddocksOwlery.wsgi.application'
 

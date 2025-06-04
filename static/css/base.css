@@ -254,6 +254,42 @@ footer a:hover {
     pointer-events: auto;
 }
 
+.upload-link {
+    text-decoration: none;
+    color: #474747;
+    font-size: 1.3rem;
+    transition: 0.3s;
+}
+
+.upload-link:hover {
+    color: #6B7054;
+    transform: scale(1.3);
+}
+
+.upload-btn {
+    background-color: #6B7054;
+    color: #EBEBEB;
+    transition: 0.3s;
+}
+
+.upload-btn:hover {
+    background-color: #6B7054;
+    color: #EBEBEB;
+    transform: scale(1.2);
+}
+
+.cancel-btn {
+    background-color: #474747;
+    color: #EBEBEB;
+    transition: 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #474747;
+    color: #EBEBEB;
+    transform: scale(1.2);
+}
+
 /* News Page */
 .news-header {
     margin-top: 50px;
