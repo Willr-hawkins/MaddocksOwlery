@@ -59,7 +59,7 @@
                             <a class="nav-link playpen-sans" href="#">Live Feed</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link playpen-sans" href="#">Gallery</a>
+                            <a class="nav-link playpen-sans" href="{% url 'gallery' %}">Gallery</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link playpen-sans" href="{% url 'news_updates_list' %}">News</a>
@@ -77,13 +77,15 @@
 
     <div>
         <footer class="text-center">
-            <ul class="list-inline">
-                <li class="list-inline-item footer-link"><a href="#">Home</a></li>
-                <li class="list-inline-item footer-link"><a href="#">Live Feed</a></li>
-                <li class="list-inline-item footer-link"><a href="#">Gallery</a></li>
-                <li class="list-inline-item footer-link"><a href="#">News</a></li>
-            </ul>
-            <p class="copyright">Company Name © 2018</p>
+            <div class="col-md-6 col-12">
+                <ul class="list-inline">
+                    <li class="list-inline-item footer-link"><a href="#">Home</a></li>
+                    <li class="list-inline-item footer-link"><a href="#">Live Feed</a></li>
+                    <li class="list-inline-item footer-link"><a href="#">Gallery</a></li>
+                    <li class="list-inline-item footer-link"><a href="#">News</a></li>
+                </ul>
+                <p class="copyright">MaddocksOwlery © 2025</p>
+            </div>
         </footer>
     </div>
 </body>

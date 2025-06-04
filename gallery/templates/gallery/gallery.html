@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="heading pt-4">
+        <h1 class="text-center pt-4">The Gallery</h1>
+        <h4 class="text-center py-1">Find amazing photos of the local wildlife and scenery!</h4>
+        <hr>
+    </div>
+
+    <div class="row gallery-row py-5 px-lg-5 px-sm-0">
+        {% for column in columns %}
+            <div class="column gallery-column">
+                {% for image in column %}
+                    <div class="position-relative gallery-image-wrapper mb-3">
+                        <img src="{{ image.image.url }}" alt="Gallery image" class="gallery-img">
+                        <div class="gallery-caption">
+                            {{ image.description }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
