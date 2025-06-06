@@ -290,6 +290,33 @@ footer a:hover {
     transform: scale(1.2);
 }
 
+/* Used only for previewing a single gallery image */
+.gallery-image-preview {
+    display: inline-block;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: #6B7054 6px solid;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.2);
+    text-align: center;
+}
+
+.gallery-img-preview {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.gallery-caption-preview {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
 /* News Page */
 .news-header {
     margin-top: 50px;

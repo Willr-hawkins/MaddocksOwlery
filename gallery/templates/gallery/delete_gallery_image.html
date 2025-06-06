@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1 class="text-center mt-5">Delete Gallery Image</h1>
+  <hr>
+  <div class="container text-center">
+    <p>Are you sure you want to delete this image?</p>
+
+    <!-- Preview Wrapper -->
+    <div class="gallery-image-preview mb-4 d-inline-block">
+      <img src="{{ gallery_image.image.url }}" alt="Gallery Image" class="gallery-img-preview">
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'gallery' %}" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+  </div>
+{% endblock %}

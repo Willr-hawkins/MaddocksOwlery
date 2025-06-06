@@ -18,7 +18,14 @@
 
     <div class="row gallery-row py-5 px-lg-5 px-sm-0">
         {% for image in images %}
-            <div class="gallery-image-wrapper mb-3">
+            <div class="gallery-image-wrapper mb-3" style="position: relative;">
+                {% if user.is_authenticated and user.is_superuser %}
+                    <a href="{% url 'delete_gallery_image' image.pk %}" 
+                       class="btn btn-sm btn-danger position-absolute" 
+                       style="top: 10px; right: 10px; z-index: 10;">
+                        &times;
+                    </a>
+                {% endif %}
                 <img src="{{ image.image.url }}" alt="Gallery image" class="gallery-img">
                 <div class="gallery-caption">
                     {{ image.description }}
@@ -27,4 +34,5 @@
         {% endfor %}
     </div>
 </div>
+
 {% endblock %}
