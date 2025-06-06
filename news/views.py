@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 from .models import NewsUpdate
+from .forms import NewsUpdateForm
 
 def news_updates_list(request):
     """ Display a list of all news updates uploaded to the site. """
@@ -13,3 +15,20 @@ def news_updates_list(request):
     }
 
     return render(request, 'news/updates_list.html', context)
+
+@login_required
+def create_news_update(request):
+    """ Allow logged in superusers to upload new upadates directlty from the news page. """
+    if request.method == 'POST':
+        form = NewsUpdateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('news_updates_list')
+    else:
+        form = NewsUpdateForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'news/create_news_update.html', context)

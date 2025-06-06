@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1 class="text-center mt-5">Upload a News Update</h1>
+  <hr>
+  <div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn upload-btn">Upload</button>
+        <a class="btn cancel-btn ms-2" href="{% url 'news_updates_list' %}">Cancel</a>
+    </form>
+  </div>
+{% endblock %}
