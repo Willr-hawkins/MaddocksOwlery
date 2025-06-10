@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -18,6 +19,8 @@
                     <div class="card" style="width: 18rem;">
                         {% if update.image %}
                             <img src="{{ update.image.url }}" class="card-img-top" alt="{{ update.title }}">
+                        {% else %}
+                            <img src="{% static 'images/maddocks-owlery.jpg' %}" class="card-img-top" alt="{{ update.title }}">
                         {% endif %}
                         <div class="card-body">
                             <p class="card-text text-center">{{ update.date_created }} Project Update.</p>

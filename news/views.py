@@ -32,3 +32,8 @@ def create_news_update(request):
     }
 
     return render(request, 'news/create_news_update.html', context)
+
+@login_required
+def delete_news_update(request, pk):
+    """ allow logged in superuser to delete news updates from the news page. """
+    
