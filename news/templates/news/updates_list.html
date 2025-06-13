@@ -17,6 +17,13 @@
             {% for update in news_updates %}
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
                     <div class="card" style="width: 18rem;">
+                        {% if user.is_authenticated and user.is_superuser %}
+                            <a href="{% url 'delete_news_update' update.pk %}" 
+                            class="btn btn-sm btn-danger position-absolute" 
+                            style="top: 10px; right: 10px; z-index: 10;">
+                                &times;
+                            </a>
+                        {% endif %}
                         {% if update.image %}
                             <img src="{{ update.image.url }}" class="card-img-top" alt="{{ update.title }}">
                         {% else %}

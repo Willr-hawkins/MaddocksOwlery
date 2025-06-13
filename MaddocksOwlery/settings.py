@@ -28,7 +28,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'n6kv3hrl4-0xa^^qdm12j#-s_kxb0+##&3o=i
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 # DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = [
+    'maddocksowlery.onrender.com',
+    'www.maddocksowlery.co.uk',
+    'maddocksowlery.co.uk',
+]
 # ALLOWED_HOSTS = ['8000-willrhawkin-maddocksowl-j3tnzmy693f.ws-eu120.gitpod.io']
 
 # Application definition

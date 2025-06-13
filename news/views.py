@@ -37,3 +37,14 @@ def create_news_update(request):
 def delete_news_update(request, pk):
     """ allow logged in superuser to delete news updates from the news page. """
     
+    news_update = get_object_or_404(NewsUpdate, pk=pk)
+
+    if request.method == 'POST':
+        news_update.delete()
+        return redirect('news_updates_list')
+    
+    context = {
+        'news_update': news_update,
+    }
+
+    return render (request, 'news/delete_news_update.html', context)

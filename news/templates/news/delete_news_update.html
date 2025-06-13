@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1 class="text-center mt-5">Delete News Update</h1>
+  <p class="text-center text-danger">| Beware deleting a news update is permenant and can't be reversed! |</p>
+  <hr>
+  <div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a class="btn btn-secondary ms-2" href="{% url 'news_updates_list' %}">Cancel</a>
+        </div>
+    </form>
+  </div>
+{% endblock %}
