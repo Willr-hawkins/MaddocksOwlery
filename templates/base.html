@@ -160,14 +160,18 @@
 
     <div>
         <footer class="text-center">
-            <div class="col-md-6 col-12">
-                <ul class="list-inline">
-                    <li class="list-inline-item footer-link"><a href="{% url 'home' %}">Home</a></li>
-                    <li class="list-inline-item footer-link"><a href="#">Live Feed</a></li>
-                    <li class="list-inline-item footer-link"><a href="{% url 'gallery' %}">Gallery</a></li>
-                    <li class="list-inline-item footer-link"><a href="{% url 'news_updates_list' %}">News</a></li>
-                </ul>
-                <p class="copyright">MaddocksOwlery © 2025</p>
+            <div class="footer-info">
+                <p>Email: <a href="mailto:info@maddocksowlery.co.uk">info@maddocksowlery.co.uk</a></p>
+                <p>croyde, North Devon, United Kingdom</p>
+            </div>
+
+            <div class="footer-legal">
+                <a href="{% url 'privacy_policy' %}">Privacy Policy</a> |
+                <a href="{% url 'cookie_policy' %}">Cookie Policy</a>
+            </div>
+
+            <div class="footer-copy">
+                © 2025 Maddocks Owlery. All rights reserved.
             </div>
         </footer>
     </div>
