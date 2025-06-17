@@ -25,9 +25,13 @@
                             </a>
                         {% endif %}
                         {% if update.image %}
-                            <img src="{{ update.image.url }}" class="card-img-top" alt="{{ update.title }}">
+                            <a href="{% url 'news_update_details' update.pk %}">
+                                <img src="{{ update.image.url }}" class="card-img-top" alt="{{ update.title }}">
+                            </a>
                         {% else %}
-                            <img src="{% static 'images/maddocks-owlery.jpg' %}" class="card-img-top" alt="{{ update.title }}">
+                            <a href="{% url 'news_update_details' update.pk %}">
+                                <img src="{% static 'images/maddocks-owlery.jpg' %}" class="card-img-top" alt="{{ update.title }}">
+                            </a>
                         {% endif %}
                         <div class="card-body">
                             <p class="card-text text-center">{{ update.date_created }} Project Update.</p>

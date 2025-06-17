@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <a class="return-link" href="{% url 'news_updates_list' %}"><i class="bi bi-arrow-left-square-fill"></i> Return to updates</a>
+        <div class="news-img-container">
+            {% if news_update.image %}
+                <img src="{{ news_update.image.url }}" class="details-img" alt="{{ news_update.title }}">
+            {% else %}
+                <img src="{% static 'images/maddocks-owlery.jpg' %}" class="details-img" alt="{{ news_update.title }}">
+            {% endif %}
+        </div>
+        <div class="news-content">
+            <h1 class="news-details-header text-center">{{ news_update.title }}</h1>
+            <hr>
+            <div class="news-details-text">
+                <p>{{ news_update.content|linebreaks }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
