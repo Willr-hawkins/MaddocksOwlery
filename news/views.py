@@ -44,17 +44,22 @@ def create_news_update(request):
     return render(request, 'news/create_news_update.html', context)
 
 @login_required
-def delete_news_update(request, pk):
-    """ allow logged in superuser to delete news updates from the news page. """
+def edit_news_update(request, pk):
+    """ allow logged in superuser to edit news updates from the news page. """
     
     news_update = get_object_or_404(NewsUpdate, pk=pk)
 
     if request.method == 'POST':
-        news_update.delete()
-        return redirect('news_updates_list')
+        form = NewsUpdateForm(request.POST, request.FILES, instance=news_update)
+        if form.is_valid():
+            form.save()
+            return redirect('news_updates_list')
+    else:
+        form = NewsUpdateForm(instance=news_update)
+        
     
     context = {
-        'news_update': news_update,
+        'form': form,
     }
 
-    return render (request, 'news/delete_news_update.html', context)
+    return render (request, 'news/edit_news_update.html', context)

@@ -391,6 +391,25 @@ footer {
     border: #6B705C 2px soild;
 }
 
+.edit-update-btn {
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background-color: #474747;
+}
+
+.edit-update-btn:hover {
+    background-color: #6B705C;
+}
+
+.edit-update-btn i {
+    color: #EBEBEB;
+}
+
+.update-btn:hover {
+    background-color: #6B705C;
+}
+
 /* News details page */
 .return-link {
     display: inline-block;

@@ -2,15 +2,15 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <h1 class="text-center mt-5">Delete News Update</h1>
-  <p class="text-center text-danger">| Beware deleting a news update is permenant and can't be reversed! |</p>
+  <h1 class="text-center mt-5">Edit News Update</h1>
+  <p class="text-center text-danger">| Edit the content of this news update. Changes will be made immediately! |</p>
   <hr>
   <div class="container">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
-        <div class="text-center mt-3">
-            <button type="submit" class="btn btn-danger">Delete</button>
+        <div class="text-center mt-3 mb-5">
+            <button type="submit" class="btn btn-secondary update-btn">Update</button>
             <a class="btn btn-secondary ms-2" href="{% url 'news_updates_list' %}">Cancel</a>
         </div>
     </form>
