@@ -16,10 +16,13 @@ def send_news_campaign(sender, instance, created, **kwargs):
 
 
         campaign_payload = {
+            "name": f"News Update: {instance.title}",
             "subject": "New update from Maddocks Owlery",
+            "type": "regular",
             "groups": [settings.MAILERLITE_GROUP_ID],
-            "template_id": settings.MAILERLITE_TEMPLATE_ID,
-            "type": "regular"
+            "template": {
+                "id": settings.MAILERLITE_TEMPLATE_ID
+            }
         }
 
         create_response = requests.post(
