@@ -35,7 +35,14 @@ def send_news_campaign(sender, instance, created, **kwargs):
             "name": f"News Update: {instance.title}",
             "subject": "New update from Maddocks Owlery",
             "type": "regular",
-            "emails": emails,
+            "emails": [
+                {
+                    "subject": "A new news update is live!",
+                    "from": "news@maddocksowlery.com",
+                    "from_name": "Maddocks Owlery",
+                    "emails": emails
+                }
+            ],
             "template": {
                 "id": settings.MAILERLITE_TEMPLATE_ID
             }
