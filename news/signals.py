@@ -52,11 +52,15 @@ def send_news_campaign(sender, instance, created, **kwargs):
     campaign_payload = {
         "name": f"News Update: {instance.title}",
         "type": "regular",
-        "subject": "New update from Maddocks Owlery",
-        "from": "news@maddocksowlery.com",
-        "from_name": "Maddocks Owlery",
-        "emails": emails,
-        "template_id": settings.MAILERLITE_TEMPLATE_ID
+        "template_id": settings.MAILERLITE_TEMPLATE_ID,
+        "emails": [
+            {
+                "emails": emails,
+                "subject": "New update from Maddocks Owlery",
+                "from": "news@maddocksowlery.com",
+                "from_name": "Maddocks Owlery"
+            }
+        ]
     }
 
     response = requests.post(
