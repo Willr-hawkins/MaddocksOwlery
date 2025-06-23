@@ -7,7 +7,7 @@ from .models import NewsUpdate
 @receiver(post_save, sender=NewsUpdate)
 def send_news_campaign(sender, instance, created, **kwargs):
     """ Trigger a news letter email to be send to all subscribers when a news update is uploaded. """
-    if created and instance.published:
+    if created:
         headers = {
             "Authorization": f"Bearer {settings.MAILERLITE_API_KEY}",
             "Content-Type": "application/json",
