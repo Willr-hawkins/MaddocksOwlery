@@ -11,6 +11,7 @@ def send_news_campaign(sender, instance, created, **kwargs):
         headers = {
             "Authorization": f"Bearer {settings.MAILERLITE_API_KEY}",
             "Content-Type": "application/json",
+            "Accept": "application/json",
         }
 
 
@@ -22,7 +23,7 @@ def send_news_campaign(sender, instance, created, **kwargs):
         }
 
         create_response = requests.post(
-            "https://api.mailerlite.com/api/v2/campaigns",
+            "https://connect.mailerlite.com/api/campaigns",
             json = campaign_payload,
             headers = headers
         )
@@ -31,7 +32,7 @@ def send_news_campaign(sender, instance, created, **kwargs):
             campaign_id = create_response.json().get('id')
 
             send_response = requests.post(
-                f"https://api.mailerlite.com/api/v2/campaigns/{campaign_id}/actions/send",
+                f"https://connect.mailerlite.com/api/campaigns/{campaign_id}/actions/send",
                 headers = headers
             )
 
