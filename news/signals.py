@@ -4,6 +4,17 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .models import NewsUpdate
 
+def get_emails_from_group(group_id, headers):
+    """ Fetch all individual emials from the mailerlite group. """
+    url = f"https://connect.mailerlite.com/api/groups/{group_id}/subscribers"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        subscribers = response.json().get('data', [])
+        return [sub['email'] for sub in subscribers]
+    else:
+        print("Failed to get subscribers:", response.text)
+        return []
+
 @receiver(post_save, sender=NewsUpdate)
 def send_news_campaign(sender, instance, created, **kwargs):
     """ Trigger a news letter email to be send to all subscribers when a news update is uploaded. """
@@ -14,12 +25,17 @@ def send_news_campaign(sender, instance, created, **kwargs):
             "Accept": "application/json",
         }
 
+        emails = get_emails_from_group(settings.MAILERLITE_GROUP_ID, headers)
+
+        if not emails:
+            print("No subscribers found in the group.")
+            return
 
         campaign_payload = {
             "name": f"News Update: {instance.title}",
             "subject": "New update from Maddocks Owlery",
             "type": "regular",
-            "groups": [settings.MAILERLITE_GROUP_ID],
+            "emails": emails,
             "template": {
                 "id": settings.MAILERLITE_TEMPLATE_ID
             }
