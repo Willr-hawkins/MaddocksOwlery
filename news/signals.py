@@ -16,6 +16,38 @@ def send_news_campaign(sender, instance, created, **kwargs):
         "Accept": "application/json"
     }
 
+    # Fetch all subscribers from the MailerLite group, handling pagination
+    group_id = settings.MAILERLITE_GROUP_ID
+    page = 1
+    emails = []
+
+    while True:
+        response = requests.get(
+            f"https://connect.mailerlite.com/api/groups/{group_id}/subscribers?page={page}",
+            headers=headers
+        )
+
+        if response.status_code != 200:
+            print(f"❌ Failed to fetch subscribers (page {page}):", response.text)
+            return
+
+        data = response.json()
+        subscribers = data.get("data", [])
+        if not subscribers:
+            break  # No more subscribers to fetch
+
+        emails.extend([sub["email"] for sub in subscribers])
+
+        meta = data.get("meta", {})
+        total_pages = meta.get("pagination", {}).get("total_pages", 1)
+        if page >= total_pages:
+            break
+        page += 1
+
+    if not emails:
+        print("❌ No subscribers found in the group.")
+        return
+
     # Create the campaign
     campaign_payload = {
         "name": f"News Update: {instance.title}",
@@ -23,7 +55,7 @@ def send_news_campaign(sender, instance, created, **kwargs):
         "subject": "New update from Maddocks Owlery",
         "from": "news@maddocksowlery.com",
         "from_name": "Maddocks Owlery",
-        "groups": [settings.MAILERLITE_GROUP_ID],
+        "emails": emails,
         "template_id": settings.MAILERLITE_TEMPLATE_ID
     }
 
