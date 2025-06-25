@@ -17,7 +17,7 @@ def notify_admin_on_create(sender, instance, created, **kwargs):
             "Along with sending out a newsletter."
         )
 
-        email - EmailMessage(
+        email = EmailMessage(
             subject = subject,
             body = message,
             from_email = None,
