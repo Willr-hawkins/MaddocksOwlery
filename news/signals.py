@@ -1,6 +1,6 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
 from .models import NewsUpdate
 
 @receiver(post_save, sender=NewsUpdate)
@@ -17,8 +17,10 @@ def notify_admin_on_create(sender, instance, created, **kwargs):
             "Along with sending out a newsletter."
         )
 
-        email = EmailMessage(
-            subject = subject,
+        subject_encoded = subject.encode('utf-8').decode('utf-8')
+
+        email = EmailMultiAlternatives(
+            subject = subject_encoded,
             body = message,
             from_email = None,
             to = ['hawkinswill02@gmail.com'],
