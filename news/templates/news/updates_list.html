@@ -17,6 +17,9 @@
             {% for update in news_updates %}
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
                     <div class="card" style="width: 18rem;">
+                        {% if user.is_superuser and update.status == 'draft' %}
+                            <span class="badge bg-warning text-dark position-absolute" style="top: 10px; left: 10px;">Draft</span>
+                        {% endif %}
                         {% if user.is_authenticated and user.is_superuser %}
                             <a href="{% url 'edit_news_update' update.pk %}" class="btn btn-sm position-absolute edit-update-btn" style="top: 10px; right: 10px; z-index: 10;">
                                 <i class="bi bi-pencil-fill"></i>

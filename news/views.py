@@ -7,7 +7,12 @@ from .forms import NewsUpdateForm
 
 def news_updates_list(request):
     """ Display a list of all news updates uploaded to the site. """
-    news_updates = NewsUpdate.objects.all().order_by('-date_created')
+    if request.user.is_authenticated and request.user.is_superuser:
+        # Superusers see all updates
+        news_updates = NewsUpdate.objects.all().order_by('-date_created')
+    else:
+        # Others only see published updates
+        news_updates = NewsUpdate.objects.filter(status='published').order_by('-date_created')
 
     context = {
         'news_updates': news_updates,
