@@ -4,6 +4,32 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .models import NewsUpdate
 
+def get_emails_from_group(group_id, headers):
+    emails = []
+    page = 1
+
+    while True:
+        url = f"https://connect.mailerlite.com/api/groups/{group_id}/subscribers?page={page}"
+        response = requests.get(url, headers=headers)
+
+        if response.status_code != 200:
+            print("❌ Failed to fetch subscribers:", response.text)
+            return []
+
+        data = response.json()
+        for subscriber in data.get("data", []):
+            email = subscriber.get("email")
+            if email:
+                emails.append([email])  # each email must be in its own list: [["a@example.com"], ["b@example.com"]]
+
+        meta = data.get("meta", {})
+        if meta.get("current_page") >= meta.get("last_page"):
+            break
+
+        page += 1
+
+    return emails
+
 @receiver(post_save, sender=NewsUpdate)
 def send_news_campaign(sender, instance, created, **kwargs):
     """ Create a MailerLite campaign and send it to newsletter subscribers when a news update is uploaded. """
@@ -16,6 +42,12 @@ def send_news_campaign(sender, instance, created, **kwargs):
         "Accept": "application/json"
     }
 
+    emails = get_emails_from_group(settings.MAILERLITE_GROUP_ID, headers)
+
+    if not emails:
+        print("❌ No emails found. Campaign not created.")
+        return
+
     #Payload to create campaign
     campaign_payload = {
         "name": f"News Update: {instance.title}",
@@ -23,7 +55,7 @@ def send_news_campaign(sender, instance, created, **kwargs):
         "subject": f"New update from Maddocks Owlery: {instance.title}",
         "from": "news@maddocksowlery.com",
         "from_name": "Maddocks Owlery",
-        "groups": [settings.MAILERLITE_GROUP_ID],
+        "emails": emials,
         "template_id": settings.MAILERLITE_TEMPLATE_ID,
     }
 
