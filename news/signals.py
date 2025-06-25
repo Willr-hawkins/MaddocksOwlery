@@ -10,14 +10,23 @@ def notify_admin_on_create(sender, instance, created, **kwargs):
     if created:
         print(f"[DEBUG] Signal triggered: New NewsUpdate created with title: '{instance.title}'")
 
+        subject = f"News update for maddocksowlery.co.uk: {instance.title}",
+        message = (
+            "Simon Maddocks has uploaded a News Update to the Maddocks Owlery website, "
+            "please review the content and change status to published. "
+            "Along with sending out a newsletter."
+        )
+
+        email - EmailMessage(
+            subject = subject,
+            body = message,
+            from_email = None,
+            to = ['hawkinswill02@gmail.com'],
+        )
+        email.encoding = 'utf-8'
+        
         try:
-            send_mail(
-                subject = f"News update for maddocksowlery.co.uk: {instance.title}",
-                message = f"Simon Maddocks has uploaded a News Update to the Maddocks Owlery website, please review the content and change status to published. Along with sending out a newsletter.",
-                from_email = None,
-                recipient_list = ['hawkinswill02@gmail.com'],
-                fail_silently = False,
-            )
+            email.send(fail_silently = False)
             print("[DEBUG] Email sent successfully!")
         except Exception as e:
             print(f"[ERROR] Failed to send email: {e}")
