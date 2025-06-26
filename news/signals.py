@@ -24,7 +24,7 @@ def notify_admin_on_create(sender, instance, created, **kwargs):
 
         try:
             email = EmailMultiAlternatives(
-                subject = subject_encoded,
+                subject = subject,
                 body = message,
                 from_email = None,
                 to = ['hawkinswill02@gmail.com'],
