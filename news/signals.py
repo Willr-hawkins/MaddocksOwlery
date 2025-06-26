@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.core.mail import EmailMultiAlternatives
 from .models import NewsUpdate
 import unicodedata
+from django.conf import settings
 
 @receiver(post_save, sender=NewsUpdate)
 def notify_admin_on_create(sender, instance, created, **kwargs):
@@ -26,7 +27,7 @@ def notify_admin_on_create(sender, instance, created, **kwargs):
             email = EmailMultiAlternatives(
                 subject = subject,
                 body = message,
-                from_email = None,
+                from_email = settings.EMAIL_HOST_USER,
                 to = ['hawkinswill02@gmail.com'],
             )
             email.encoding = 'utf-8'
