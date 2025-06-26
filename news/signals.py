@@ -1,6 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import EmailMultiAlternatives
+from django.urls import reverse
 from django.conf import settings
 from .models import NewsUpdate
 import unicodedata
@@ -10,35 +11,45 @@ def notify_admin_on_create(sender, instance, created, **kwargs):
     if created:
         print(f"[DEBUG] Signal triggered: New NewsUpdate created with title: '{instance.title}'")
 
-        raw_subject = f"News update for maddocksowlery.co.uk: {instance.title}"
-        raw_message = (
-            "Simon Maddocks has uploaded a News Update to the Maddocks Owlery website, "
-            "please review the content and change status to published. "
+        subject = unicodedata.normalize("NFKD", f"News update for maddocksowlery.co.uk: {instance.title}").replace('\xa0', ' ')
+
+        text_content = (
+            f"Simon Maddocks has uploaded a News Update titled '{instance.title}' to the Maddocks Owlery website.\n\n"
+            "Please review the content and change status to published.\n\n"
             "Along with sending out a newsletter."
         )
 
-        subject = unicodedata.normalize("NFKD", raw_subject).replace('\xa0', ' ')
-        subject = subject.encode('utf-8', 'ignore').decode('utf-8')
+        # If you have a public URL for the news update or admin link, use it here
+        # For example, if you have a named URL 'admin:news_newsupdate_change':
+        try:
+            admin_url = f"{settings.SITE_URL}" + reverse('admin:news_newsupdate_change', args=[instance.pk])
+        except Exception:
+            admin_url = "Admin URL not available"
 
-        message = unicodedata.normalize("NFKD", raw_message).replace('\xa0', ' ')
-        message = message.encode('utf-8', 'ignore').decode('utf-8')
-
-        from_email = unicodedata.normalize("NFKD", settings.EMAIL_HOST_USER).replace('\xa0', ' ')
-        from_email = from_email.encode('utf-8', 'ignore').decode('utf-8')
-
-        print("[DEBUG] subject repr:", repr(subject))
-        print("[DEBUG] message repr:", repr(message))
-        print("[DEBUG] from_email repr:", repr(from_email))
+        html_content = f"""
+            <html>
+                <body>
+                    <h2>New News Update Created</h2>
+                    <p><strong>Title:</strong> {instance.title}</p>
+                    <p><strong>Created on:</strong> {instance.date_created.strftime('%Y-%m-%d %H:%M')}</p>
+                    <p>{instance.content[:200]}{'...' if len(instance.content) > 200 else ''}</p>
+                    <p>Please review and publish the update in the admin.</p>
+                    <p><a href="{admin_url}">Go to News Update in Admin</a></p>
+                    <hr>
+                    <p>Remember to send out the newsletter when publishing!</p>
+                </body>
+            </html>
+        """
 
         try:
             email = EmailMultiAlternatives(
                 subject=subject,
-                body=message,
-                from_email=from_email,
+                body=text_content,
+                from_email=settings.EMAIL_HOST_USER,
                 to=['hawkinswill02@gmail.com'],
             )
+            email.attach_alternative(html_content, "text/html")
             email.encoding = 'utf-8'
-            email.content_subtype = "plain"  # explicitly plain text
             email.send(fail_silently=False)
             print("[DEBUG] Email sent successfully!")
         except Exception as e:
