@@ -1,14 +1,12 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 from .models import NewsUpdate
 import unicodedata
-from django.conf import settings
 
 @receiver(post_save, sender=NewsUpdate)
 def notify_admin_on_create(sender, instance, created, **kwargs):
-    """ Send an email to notify website creator of a news update being created. """
-
     if created:
         print(f"[DEBUG] Signal triggered: New NewsUpdate created with title: '{instance.title}'")
 
@@ -19,19 +17,29 @@ def notify_admin_on_create(sender, instance, created, **kwargs):
             "Along with sending out a newsletter."
         )
 
-        # Normalize unicode and strip problematic characters like non-breaking spaces.
         subject = unicodedata.normalize("NFKD", raw_subject).replace('\xa0', ' ')
+        subject = subject.encode('utf-8', 'ignore').decode('utf-8')
+
         message = unicodedata.normalize("NFKD", raw_message).replace('\xa0', ' ')
+        message = message.encode('utf-8', 'ignore').decode('utf-8')
+
+        from_email = unicodedata.normalize("NFKD", settings.EMAIL_HOST_USER).replace('\xa0', ' ')
+        from_email = from_email.encode('utf-8', 'ignore').decode('utf-8')
+
+        print("[DEBUG] subject repr:", repr(subject))
+        print("[DEBUG] message repr:", repr(message))
+        print("[DEBUG] from_email repr:", repr(from_email))
 
         try:
             email = EmailMultiAlternatives(
-                subject = subject,
-                body = message,
-                from_email = settings.EMAIL_HOST_USER,
-                to = ['hawkinswill02@gmail.com'],
+                subject=subject,
+                body=message,
+                from_email=from_email,
+                to=['hawkinswill02@gmail.com'],
             )
             email.encoding = 'utf-8'
-            email.send(fail_silently = False)
+            email.content_subtype = "plain"  # explicitly plain text
+            email.send(fail_silently=False)
             print("[DEBUG] Email sent successfully!")
         except Exception as e:
             print(f"[ERROR] Failed to send email: {e}")
