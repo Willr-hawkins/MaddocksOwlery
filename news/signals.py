@@ -10,7 +10,7 @@ def notify_admin_on_create(sender, instance, created, **kwargs):
     if created:
         print(f"[DEBUG] Signal triggered: New NewsUpdate created with title: '{instance.title}'")
 
-        subject = f"News update for maddocksowlery.co.uk: {instance.title}",
+        subject = f"News update for maddocksowlery.co.uk: {instance.title}"
         message = (
             "Simon Maddocks has uploaded a News Update to the Maddocks Owlery website, "
             "please review the content and change status to published. "
