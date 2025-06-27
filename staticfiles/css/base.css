@@ -220,15 +220,17 @@ footer {
     max-height: 600px;
     max-width: 600px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 .carousel-item {
     max-height: 600px;
     max-width: 600px;
-    z-index: -1;
 }
 
 .carousel-item img {
+    max-height: 600px;
+    max-width: 600px;
     object-fit: contain;
     object-position: center;
 }
@@ -237,9 +239,11 @@ footer {
     width: 100%;
     height: auto;
     max-width: 100%;
-    border: #6B705C 5px solid;
+    border: #6B705C 6px solid;
     border-radius: 25px;
+    overflow: hidden;
 }
+
 
 #unmuteButton,
 #playPauseBtn {
