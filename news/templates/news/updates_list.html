@@ -12,11 +12,12 @@
     <div class="container">
         <h1 class="text-center news-header">News Updates</h1>
         <hr>
-        <div class="row gx-3 gy-4">
+        <br>
+        <div class="container">
             <!-- Create a card for each news update in the database. -->
             {% for update in news_updates %}
-                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-                    <div class="card" style="width: 18rem;">
+                <div class="col-12 justify-content-center">
+                    <div class="card">
                         {% if user.is_superuser and update.status == 'draft' %}
                             <span class="badge bg-warning text-dark position-absolute" style="top: 10px; left: 10px;">Draft</span>
                         {% endif %}
@@ -26,19 +27,19 @@
                             </a>
                         {% endif %}
                         {% if update.image %}
-                            <a href="{% url 'news_update_details' update.pk %}">
-                                <img src="{{ update.image.url }}" class="card-img-top" alt="{{ update.title }}">
-                            </a>
+                            <img src="{{ update.image.url }}" class="card-img-top" alt="{{ update.title }}">
                         {% else %}
-                            <a href="{% url 'news_update_details' update.pk %}">
-                                <img src="{% static 'images/maddocks-owlery.jpg' %}" class="card-img-top" alt="{{ update.title }}">
-                            </a>
+                            <img src="{% static 'images/maddocks-owlery.jpg' %}" class="card-img-top" alt="{{ update.title }}">
                         {% endif %}
                         <div class="card-body">
-                            <p class="card-text text-center">{{ update.date_created }} Project Update.</p>
+                            <h2 class="card-header text-center">{{ update.title }}</h2>
+                            <p class="card-text text-center"><small>{{ update.date_created }}</small></p>
+                            <br>
+                            <p>{{ update.content|linebreaks }}</p>
                         </div>
                     </div>
                 </div>
+                <br>
             {% empty %}
                 <div class="container">
                     <h3 class="text-center mt-4">Nothing Found!</h3>

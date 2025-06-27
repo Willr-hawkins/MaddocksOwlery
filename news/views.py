@@ -21,16 +21,6 @@ def news_updates_list(request):
 
     return render(request, 'news/updates_list.html', context)
 
-def news_update_details(request, pk):
-    """ Displays the news updates content when the user clicks on the updates card, from the news updates list. """
-    news_update = get_object_or_404(NewsUpdate, pk=pk)
-
-    context = {
-        'news_update': news_update,
-    }
-
-    return render(request, 'news/news_update_details.html', context)
-
 @login_required
 def create_news_update(request):
     """ Allow logged in superusers to upload new upadates directlty from the news page. """

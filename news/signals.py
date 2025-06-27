@@ -34,7 +34,7 @@ def notify_admin_on_create(sender, instance, created, **kwargs):
                     <p><strong>Created on:</strong> {instance.date_created.strftime('%Y-%m-%d %H:%M')}</p>
                     <p>{instance.content[:200]}{'...' if len(instance.content) > 200 else ''}</p>
                     <p>Please review and publish the update in the admin.</p>
-                    <p><a href="{admin_url}">Go to News Update in Admin</a></p>
+                    <p><a href="https://www.maddocksowlery.co.uk/admin/news/newsupdate/">Go to News Update in Admin</a></p>
                     <hr>
                     <p>Remember to send out the newsletter when publishing!</p>
                 </body>
